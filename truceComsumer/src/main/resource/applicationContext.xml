@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:p="http://www.springframework.org/schema/p"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
@@ -16,12 +16,12 @@
 
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.*"/>
-	<dubbo:application name="what" />
+	<dubbo:application name="comsumer" />
 
 
 	<dubbo:registry  address="zookeeper://192.168.13.1:2181" />
 	<dubbo:protocol name="dubbo" port="20881" />
 	<dubbo:reference id="sayHelloImpl" interface="com.du.dubbo.server.truce.SayHello"   filter="traceIdFilter"/>
 	<dubbo:service  interface="com.du.dubbo.server.truce.SayGoodBye" ref="sayGoodByeImpl"  filter="traceIdFilter"/>
-
+	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="truceComsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
 </beans>

@@ -20,6 +20,7 @@ public class SayHelloImpl implements SayHello {
 
         System.out.println("hello  :"+name+"  "+traceId);
         SayGoodBye sayGoodBye = (SayGoodBye) context.getBean("sayGoodByeImpl");
+
         sayGoodBye.say();
 
     }
