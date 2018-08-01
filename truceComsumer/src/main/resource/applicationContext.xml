@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+ ">
+
+
+	<!--           spring    -->
+
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan base-package="com.*"/>
+	<dubbo:application name="what" />
+
+
+	<dubbo:registry  address="zookeeper://192.168.13.1:2181" />
+	<dubbo:protocol name="dubbo" port="20881" />
+	<dubbo:reference id="sayHelloImpl" interface="com.du.dubbo.server.truce.SayHello"   filter="traceIdFilter"/>
+	<dubbo:service  interface="com.du.dubbo.server.truce.SayGoodBye" ref="sayGoodByeImpl"  filter="traceIdFilter"/>
+
+</beans>
