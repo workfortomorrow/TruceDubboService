@@ -2,7 +2,7 @@
 
 #### 大体以下几种
 
-- Google Dapper
+- Google Dapper 分布式追踪系统
 - zipkin
 - 字节码注入实现
 
