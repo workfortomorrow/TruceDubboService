@@ -1,6 +1,8 @@
 package com.du.dubbo.server.truce;
 
 import com.alibaba.dubbo.rpc.*;
+import com.github.kristofa.brave.dubbo.BraveConsumerFilter;
+import com.github.kristofa.brave.dubbo.BraveProviderFilter;
 
 /**
  * @Author: duhongjiang
@@ -17,7 +19,7 @@ public class TraceIdFilter implements Filter {
             // *) 交互前重新设置traceId, 避免信息丢失
             RpcContext.getContext().setAttachment("traceId", TraceIdUtils.getTraceId());
         }
-
+        System.out.println("########################################");
         System.out.println("traceId :"+RpcContext.getContext().getAttachment("traceId"));
         System.out.println("Url :"+RpcContext.getContext().getUrl());
         System.out.println("MethodName :"+RpcContext.getContext().getMethodName());
@@ -27,6 +29,15 @@ public class TraceIdFilter implements Filter {
         System.out.println("remoteAddress :"+RpcContext.getContext().getRemoteAddressString());
         System.out.println("RemoteHost :"+RpcContext.getContext().getRemoteHost());
         System.out.println("RemotePort :"+RpcContext.getContext().getRemotePort());
+        System.out.println("ParameterTypes :"+RpcContext.getContext().getParameterTypes());
+        System.out.println("Arguments :"+invocation.getArguments());
+        System.out.println("Attachments :"+invocation.getAttachments().toString());
+        System.out.println("Attachments :"+invocation.getParameterTypes().toString());
+        System.out.println("Parameters :"+RpcContext.getContext().getUrl().getParameters());
+        System.out.println("MethodParameter name :"+RpcContext.getContext().getUrl().getMethodParameter(invocation.getMethodName(),"name"));
+        System.out.println("MethodParameter age :"+RpcContext.getContext().getUrl().getMethodParameter(invocation.getMethodName(),"age"));
+        System.out.println("########################################");
+
         // *) 实际的rpc调用
         return invoker.invoke(invocation);
     }

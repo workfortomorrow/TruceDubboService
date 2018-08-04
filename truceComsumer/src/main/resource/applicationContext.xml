@@ -24,4 +24,5 @@
 	<dubbo:reference id="sayHelloImpl" interface="com.du.dubbo.server.truce.SayHello"   filter="traceIdFilter"/>
 	<dubbo:service  interface="com.du.dubbo.server.truce.SayGoodBye" ref="sayGoodByeImpl"  filter="traceIdFilter"/>
 	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="truceComsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
+	<!--<bean id="brave" class="com.du.dubbo.server.BraveFactoryBean" p:serviceName="truceComsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />-->
 </beans>

@@ -5,18 +5,18 @@ package com.du.dubbo.server.truce;
  * @Date: Created in 2018/7/31
  */
 public class TraceIdUtils {
-    private static final ThreadLocal<String> traceIdCache
+    private static final ThreadLocal<String> TRACE_ID_CACHE
             = new ThreadLocal<String>();
 
     public static String getTraceId() {
-        return traceIdCache.get();
+        return TRACE_ID_CACHE.get();
     }
 
     public static void setTraceId(String traceId) {
-        traceIdCache.set(traceId);
+        TRACE_ID_CACHE.set(traceId);
     }
 
     public static void clear() {
-        traceIdCache.remove();
+        TRACE_ID_CACHE.remove();
     }
 }

@@ -1,4 +1,4 @@
-package com.du.dubbo.Service.truce;
+package com.du.dubbo.service.truce;
 
 import static org.junit.Assert.assertTrue;
 

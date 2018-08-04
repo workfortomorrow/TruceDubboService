@@ -15,13 +15,13 @@ public class SayHelloImpl implements SayHello {
     @Resource
     ApplicationContext context;
     @Override
-    public void say(String name) {
+    public void say(String name,int age) {
         String traceId = TraceIdUtils.getTraceId();
 
-        System.out.println("hello  :"+name+"  "+traceId);
+        System.out.println("hello  :"+name+" your age :"+age+" traceId is: "+traceId);
         SayGoodBye sayGoodBye = (SayGoodBye) context.getBean("sayGoodByeImpl");
 
-        sayGoodBye.say();
+        sayGoodBye.say(name,age);
 
     }
 }

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SayGoodByeImpl implements SayGoodBye {
     @Override
-    public void say() {
+    public void say(String name,int age) {
         String traceId = TraceIdUtils.getTraceId();
 
-        System.out.println("goodbye  "+traceId);
+        System.out.println("goodbye  name: "+name+" age is :"+age+" traceId :"+traceId);
     }
 }

@@ -24,7 +24,7 @@ public class DubboTruceTast {
     public void functionalTest() throws Exception {
 
         SayHello sayHello = (SayHello) context.getBean("sayHelloImpl");
-        sayHello.say(" ");
+        sayHello.say("duhj",23);
     }
     public static void main(String []args){
         try {

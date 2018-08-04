@@ -6,7 +6,9 @@ package com.du.dubbo.server.truce;
  */
 public interface SayHello {
     /**
-     *
+     * test
+     * @param name
+     * @param age
      */
-    public void say(String name);
+    public void say(String name,int age);
 }
