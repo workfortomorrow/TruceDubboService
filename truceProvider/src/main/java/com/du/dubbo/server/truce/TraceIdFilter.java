@@ -41,7 +41,6 @@ public class TraceIdFilter implements Filter {
                 if (cla.isPrimitive()) {
                     if (objs[i] != null) {
                         String parameterType = cla.getSimpleName();
-
                         String key = parameterType + i;
                         paramMap.put(key, objs[i]);
                     }
