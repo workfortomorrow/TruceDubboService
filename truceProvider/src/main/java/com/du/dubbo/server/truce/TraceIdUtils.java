@@ -1,6 +1,7 @@
 package com.du.dubbo.server.truce;
 
 /**
+ * test 透传ID 测试类
  * @Author: duhongjiang
  * @Date: Created in 2018/7/31
  */

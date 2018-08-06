@@ -8,13 +8,16 @@ import org.apache.commons.beanutils.PropertyUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.concurrent.ConcurrentHashMap;
+import com.alibaba.dubbo.common.extension.Activate;
+import java.util.concurrent.ConcurrentMap;
 
 
 /**
  * @Author: duhongjiang
  * @Date: Created in 2018/7/31
  */
+@Activate(group = "provider")
 public class TraceIdFilter implements Filter {
 
     Logger logger = LoggerFactory.getLogger("service");
@@ -29,7 +32,10 @@ public class TraceIdFilter implements Filter {
      * 交互前重新设置traceId, 避免信息丢失
      */
     public  Map<String, Object> getMap(Object[] objs,Class<?>[] parameterTypes){
-        Map<String, Object> paramMap = new HashMap<String, Object>(16);
+//        Map<String, Object> paramMap = new HashMap<String, Object>(16);
+        Map<String, Object> paramMap = new ConcurrentHashMap<String, Object>(20);
+
+
         try {
             for (int i = 0; i < parameterTypes.length; i++) {
                 Class<?> cla = parameterTypes[i];
@@ -51,6 +57,7 @@ public class TraceIdFilter implements Filter {
                 }else if (cla.equals(Map.class)) {
                     paramMap.putAll((Map) objs[i]);
                     Map<String, Object> ma = new HashMap<>(20);
+//                    Map<String, Object> ma = new ConcurrentHashMap<>(20);
                     ma = paramMap;
                     filter(ma);
                     paramMap = ma;
@@ -68,7 +75,7 @@ public class TraceIdFilter implements Filter {
     }
 
     /**
-     *
+     * 对 参数Map进行迭代筛除 class类型参数
      * @param map
      */
     public static void filter(Map<String, Object> map) {
@@ -135,7 +142,7 @@ public class TraceIdFilter implements Filter {
         }catch (Exception e){
 
         }finally {
-           // logger.info("method:["+invocation.getMethodName() +"],request:"+invocation.getArguments()+",takeTime:"+takeTime+" ms");
+            logger.info("method:["+invocation.getMethodName() +"],request:"+invocation.getArguments()+",takeTime:"+takeTime+" ms");
             Object [] o =invocation.getArguments();
             for (Object i:o){
                 if(i instanceof String) {

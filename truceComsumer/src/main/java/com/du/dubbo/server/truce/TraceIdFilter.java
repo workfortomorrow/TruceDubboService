@@ -1,5 +1,6 @@
 package com.du.dubbo.server.truce;
 
+import com.alibaba.dubbo.common.extension.Activate;
 import com.alibaba.dubbo.rpc.*;
 import com.github.kristofa.brave.dubbo.BraveConsumerFilter;
 import com.github.kristofa.brave.dubbo.BraveProviderFilter;
@@ -8,7 +9,22 @@ import com.github.kristofa.brave.dubbo.BraveProviderFilter;
  * @Author: duhongjiang
  * @Date: Created in 2018/7/31
  */
+//@Activate(group = "consumer")
+@Activate(group = "provider")
 public class TraceIdFilter implements Filter {
+
+    /**
+     * 动态代理 调用
+     * @param invoker
+     * @param invocation
+     * @return
+     * @throws RpcException
+     *
+     * 1.从RpcContext里获取traceId并保存
+     * 2.交互前重新设置traceId, 避免信息丢失
+     * 3.对调用 处理追踪日志
+     * 4.真实的调用，并返回结果
+     */
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         String traceId = RpcContext.getContext().getAttachment("traceId");
