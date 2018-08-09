@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @Author: duhongjiang
@@ -42,7 +45,12 @@ public class DubboTruceTast {
             dubboTruceTast.setup();
             System.out.println(RpcContext.getContext().getAttachments());
             SayHello sayHello = (SayHello) context.getBean("sayHelloImpl");
-            sayHello.say("dujiang",24);
+//            sayHello.say("dujiang",24);
+            Map info = new HashMap();
+            info.put("name","dujiang");
+            info.put("age",25);
+//            sayHello.say("dujiang",24);
+            sayHello.sayHello(info);
             System.in.read();
         } catch (Exception e) {
             e.printStackTrace();

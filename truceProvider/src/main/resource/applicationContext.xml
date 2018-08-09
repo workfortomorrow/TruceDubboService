@@ -18,12 +18,15 @@
 	<context:component-scan base-package="com.*"/>
 	<dubbo:application name="provider" />
 
-	<dubbo:registry  address="zookeeper://192.168.13.1:2181"/>
+	<!--<dubbo:registry  address="zookeeper://192.168.13.1:2181"/>-->
+	<dubbo:registry  address="zookeeper://192.168.43.124:2181"/>
 	<bean id="traceIdFilter" class="com.du.dubbo.server.truce.TraceIdFilter"/>
 	<dubbo:service  interface="com.du.dubbo.server.truce.SayHello" ref="sayHelloImpl"  filter="traceIdFilter"/>
+	<!--<dubbo:service  interface="com.du.dubbo.server.truce.SayHello" ref="sayHelloImpl"  />-->
 
+	<!--<dubbo:reference id="sayGoodByeImpl" interface="com.du.dubbo.server.truce.SayGoodBye"  />-->
 	<dubbo:reference id="sayGoodByeImpl" interface="com.du.dubbo.server.truce.SayGoodBye"   filter="traceIdFilter"/>
 
-	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="truceProvider" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
+	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="provider" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
 
 </beans>

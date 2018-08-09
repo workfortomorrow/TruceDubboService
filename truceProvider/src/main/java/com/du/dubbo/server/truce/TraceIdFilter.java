@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentMap;
  * @Author: duhongjiang
  * @Date: Created in 2018/7/31
  */
-@Activate(group = "provider")
+//@Activate(group = "provider")
 public class TraceIdFilter implements Filter {
 
     Logger logger = LoggerFactory.getLogger("service");

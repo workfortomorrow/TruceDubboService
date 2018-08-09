@@ -19,10 +19,13 @@
 	<dubbo:application name="comsumer" />
 
 
-	<dubbo:registry  address="zookeeper://192.168.13.1:2181" />
+	<!--<dubbo:registry  address="zookeeper://192.168.13.1:2181" />-->
+	<dubbo:registry  address="zookeeper://192.168.43.124:2181"/>
 	<dubbo:protocol name="dubbo" port="20881" />
 	<dubbo:reference id="sayHelloImpl" interface="com.du.dubbo.server.truce.SayHello"   filter="traceIdFilter"/>
+	<!--<dubbo:reference id="sayHelloImpl" interface="com.du.dubbo.server.truce.SayHello"   />-->
+	<!--<dubbo:service  interface="com.du.dubbo.server.truce.SayGoodBye" ref="sayGoodByeImpl"  />-->
 	<dubbo:service  interface="com.du.dubbo.server.truce.SayGoodBye" ref="sayGoodByeImpl"  filter="traceIdFilter"/>
-	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="truceComsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
+	<bean id="brave" class="com.github.kristofa.brave.dubbo.BraveFactoryBean" p:serviceName="comsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />
 	<!--<bean id="brave" class="com.du.dubbo.server.BraveFactoryBean" p:serviceName="truceComsumer" p:zipkinHost="http://localhost:9411/" p:rate="1.0" />-->
 </beans>

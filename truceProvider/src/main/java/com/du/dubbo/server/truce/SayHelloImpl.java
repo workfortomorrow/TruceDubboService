@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @Author: duhongjiang
@@ -23,5 +24,10 @@ public class SayHelloImpl implements SayHello {
 
         sayGoodBye.say(name,age);
 
+    }
+
+    @Override
+    public void sayHello(Map info) {
+        System.out.println(info.toString());
     }
 }

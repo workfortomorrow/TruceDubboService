@@ -1,9 +1,13 @@
 package com.du.dubbo.server.truce;
 
+import com.github.kristofa.brave.dubbo.support.DefaultClientNameProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * 测试 spring batch框架方式集成交易数据
@@ -35,6 +39,10 @@ public class DubboTruceTast {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        StringBuffer strinBuffer;
+        ConcurrentHashMap map;
+        DefaultClientNameProvider ee;
 
 
     }

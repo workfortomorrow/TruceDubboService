@@ -10,7 +10,7 @@ import com.github.kristofa.brave.dubbo.BraveProviderFilter;
  * @Date: Created in 2018/7/31
  */
 //@Activate(group = "consumer")
-@Activate(group = "provider")
+//@Activate(group = "provider")
 public class TraceIdFilter implements Filter {
 
     /**
