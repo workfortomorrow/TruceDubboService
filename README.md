@@ -3,8 +3,8 @@
 #### 大体以下几种
 
 - Google Dapper 分布式追踪系统
-- zipkin
-- 字节码注入实现
+- 拦截请求  zipkin(存储 in-memory,mysql,cassandra,elasticsearch)
+- 字节码注入实现 pinpoint(存储 HBase)  skywalking(存储 elasticsearch，h2)
 
 ### TruceDubboService 使用zipkin实现
 
